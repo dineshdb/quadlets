@@ -1,0 +1,15 @@
+[Unit]
+Description=Mongodb Database
+
+[Container]
+Image=docker.io/mongo:4.2.0
+AutoUpdate=registry
+
+Exec=mongod --oplogSize=128 --replSet=rs0 --storageEngine=wiredTiger
+Volume=mongodb.volume:/data
+ExposeHostPort=27017
+
+[Service]
+Restart=always
+
+[Install]

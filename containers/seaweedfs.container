@@ -1,0 +1,19 @@
+[Unit]
+Description=SeaWeedFS container
+
+[Container]
+Image=docker.io/chrislusf/seaweedfs
+AutoUpdate=registry
+
+Exec=server -s3
+Volume=seaweedfs.volume:/data
+
+ExposeHostPort=8333
+Label=traefik.http.routers.seaweedfs.rule=Host(`s3.localhost`)
+Label=traefik.http.services.seaweedfs.loadbalancer.server.port=8333
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

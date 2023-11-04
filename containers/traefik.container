@@ -1,0 +1,16 @@
+[Unit]
+Description=Traefik HTTP Reverse Proxy
+
+[Container]
+Image=docker.io/traefik:latest
+AutoUpdate=registry
+Exec=--entrypoints.web.address=":80" --providers.docker=true 
+SecurityLabelType=container_runtime_t
+Volume=/run/podman/podman.sock:/var/run/docker.sock:z
+PublishPort=80:80
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

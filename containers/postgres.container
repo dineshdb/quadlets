@@ -1,0 +1,15 @@
+[Unit]
+Description=Postgres container
+
+[Container]
+Image=docker.io/postgres
+Volume=postgres.volume:/var/lib/postgresql/data
+Environment=POSTGRES_HOST_AUTH_METHOD=trust
+AutoUpdate=registry
+ExposeHostPort=5432
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Squid cache
+
+[Container]
+Image=docker.io/ubuntu/squid
+Volume=squid.volume:/var/spool/squid
+PublishPort=3128:3128
+AutoUpdate=registry
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

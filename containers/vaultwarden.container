@@ -1,0 +1,17 @@
+[Unit]
+Description=vaultwarden container
+
+[Container]
+Image=docker.io/vaultwarden/server:latest
+AutoUpdate=registry
+Volume=vaultwarden.volume:/data:z
+ExposeHostPort=80
+
+Label=traefik.http.routers.vaultwarden.rule=Host(`vaultwarden.localhost`)
+Label=traefik.http.services.vaultwarden.loadbalancer.server.port=80
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

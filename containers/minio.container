@@ -1,0 +1,22 @@
+[Unit]
+Description=Minio container
+
+[Container]
+Image=docker.io/minio/minio
+AutoUpdate=registry
+
+Exec=server /data --console-address ":9001"
+Volume=minio.volume:/data
+
+Label=traefik.http.routers.s3.rule=Host(`s3.localhost`)
+Label=traefik.http.services.s3.loadbalancer.server.port=9000
+Label=traefik.http.routers.s3.service=s3
+
+Label=traefik.http.routers.minio.rule=Host(`minio.localhost`)
+Label=traefik.http.services.minio.loadbalancer.server.port=9001
+Label=traefik.http.routers.minio.service=minio
+
+[Service]
+Restart=always
+
+[Install]
