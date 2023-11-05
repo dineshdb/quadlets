@@ -17,6 +17,9 @@ minio:
 vaultwarden:
 	@make install app=$@
 
+qdrant:
+	@make install app=$@
+
 install:
 	@sudo systemctl enable --now podman.socket
 	@sudo cp -rf containers/${app}.* /etc/containers/systemd/

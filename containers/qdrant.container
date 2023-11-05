@@ -1,0 +1,17 @@
+[Unit]
+Description=Qdrant
+
+[Container]
+Image=docker.io/qdrant/qdrant
+AutoUpdate=registry
+Volume=qdrant.volume:/qdrant/storage
+
+ExposeHostPort=6333
+Label=traefik.http.routers.qdrant.rule=Host(`qdrant.localhost`)
+Label=traefik.http.services.qdrant.loadbalancer.server.port=6333
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
