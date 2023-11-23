@@ -8,6 +8,8 @@ Exec=--entrypoints.web.address=":80" --providers.docker=true
 SecurityLabelType=container_runtime_t
 Volume=/run/podman/podman.sock:/var/run/docker.sock:z
 PublishPort=80:80
+ContainerName=traefik
+Network=internal.network
 
 [Service]
 Restart=always

@@ -1,9 +1,13 @@
+.PHONY: synapse
+setup:
+	@sudo cp -rf containers/*.network containers/*.volume /etc/containers/systemd/
+
 traefik:
-	make install app=$@
+	@make install app=$@
 
 traefik-https: setup
-	sudo touch /etc/containers/systemd/acme.json
-	make install app=$@
+	@sudo touch /etc/containers/systemd/acme.json
+	@make install app=$@
 
 syncthing:
 	make install app=$@
@@ -20,7 +24,10 @@ vaultwarden:
 qdrant:
 	@make install app=$@
 
-install:
+postgres:
+	@make install app=$@
+
+install: setup
 	@sudo systemctl enable --now podman.socket
 	@sudo cp -rf containers/${app}.* /etc/containers/systemd/
 	@sudo systemctl daemon-reload

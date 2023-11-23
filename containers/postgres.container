@@ -1,5 +1,5 @@
 [Unit]
-Description=Postgres container
+Description=Postgres Database Server
 
 [Container]
 Image=docker.io/postgres
@@ -7,6 +7,9 @@ Volume=postgres.volume:/var/lib/postgresql/data
 Environment=POSTGRES_HOST_AUTH_METHOD=trust
 AutoUpdate=registry
 ExposeHostPort=5432
+# set a container name to be used as hostname while referencing this container
+ContainerName=postgres
+Network=internal.network
 
 [Service]
 Restart=always

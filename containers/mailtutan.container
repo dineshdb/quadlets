@@ -1,0 +1,21 @@
+[Unit]
+Description=mailtutan fake smtp server
+
+[Container]
+Image=docker.io/mailtutan/mailtutan:latest
+AutoUpdate=registry
+
+ExposeHostPort=1080
+ExposeHostPort=1025
+
+Label=traefik.http.routers.mailtutan.rule=Host(`mail.localhost`)
+Label=traefik.http.services.mailtutan.loadbalancer.server.port=1080
+
+ContainerName=mailtutan
+Network=internal.network
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

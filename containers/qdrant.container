@@ -10,6 +10,9 @@ ExposeHostPort=6333
 Label=traefik.http.routers.qdrant.rule=Host(`qdrant.localhost`)
 Label=traefik.http.services.qdrant.loadbalancer.server.port=6333
 
+ContainerName=qdrant
+Network=internal.network
+
 [Service]
 Restart=always
 

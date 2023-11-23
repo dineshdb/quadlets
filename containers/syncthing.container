@@ -10,6 +10,8 @@ Label=traefik.http.routers.syncthing.rule=Host(`syncthing.localhost`)
 Label=traefik.http.services.syncthing.loadbalancer.server.port=8384
 Environment=url=http://syncthing.localhost
 ExposeHostPort=8384
+ContainerName=syncthing
+Network=internal.network
 
 [Service]
 Restart=always

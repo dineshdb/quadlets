@@ -12,6 +12,9 @@ ExposeHostPort=8333
 Label=traefik.http.routers.seaweedfs.rule=Host(`s3.localhost`)
 Label=traefik.http.services.seaweedfs.loadbalancer.server.port=8333
 
+ContainerName=seaweedfs
+Network=internal.network
+
 [Service]
 Restart=always
 
